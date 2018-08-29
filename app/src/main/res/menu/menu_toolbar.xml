@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group android:id="@+id/menu_group">
+
+        <item android:id="@+id/menu_listView"
+            android:icon="@drawable/ic_menu_list"
+            android:title="ListView" />
+
+        <item android:id="@+id/menu_gridView"
+            android:icon="@drawable/ic_menu_grid"
+            android:title="GridView" />
+    </group>
+
+    <item android:id="@+id/menu_action_search"
+        android:title="Search"
+        app:showAsAction="always"
+        android:icon="@android:drawable/ic_menu_search"/>
+</menu>
