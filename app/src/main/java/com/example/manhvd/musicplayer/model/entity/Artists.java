@@ -1,4 +1,4 @@
-package com.example.manhvd.musicplayer.model;
+package com.example.manhvd.musicplayer.model.entity;
 
 import java.io.Serializable;
 
@@ -47,3 +47,4 @@ public class Artists implements Serializable {
         this.numberAlbumsArtistsModel = numberAlbumsArtistsModel;
     }
 }
+

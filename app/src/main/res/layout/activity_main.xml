@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".MainActivity">
+    tools:context=".view.activity.MainActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/tool_barActivityMain"
@@ -31,4 +31,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </android.support.v4.view.ViewPager>
+
+    <RelativeLayout
+        android:padding="5dp"
+        android:background="#ffff"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/img_bottomSongActivity"
+            android:src="@drawable/beat"
+            android:layout_alignParentLeft="true"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+        <ImageView
+            android:id="@+id/img_bottomPlayActivity"
+            android:src="@drawable/ic_playbottom_activity"
+            android:layout_alignParentRight="true"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+    </RelativeLayout>
 </RelativeLayout>

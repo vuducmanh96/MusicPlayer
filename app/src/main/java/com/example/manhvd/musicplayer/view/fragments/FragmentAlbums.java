@@ -1,7 +1,5 @@
-package com.example.manhvd.musicplayer.Fragments;
+package com.example.manhvd.musicplayer.view.fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.manhvd.musicplayer.R;
-
 
 public class FragmentAlbums extends Fragment {
 
@@ -24,3 +21,4 @@ public class FragmentAlbums extends Fragment {
         return view;
     }
 }
+

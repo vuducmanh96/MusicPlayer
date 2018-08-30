@@ -1,4 +1,4 @@
-package com.example.manhvd.musicplayer.model;
+package com.example.manhvd.musicplayer.model.entity;
 
 import java.io.Serializable;
 
@@ -9,6 +9,11 @@ public class Songs implements Serializable {
 
     public Songs(int imgSongsModel, String nameSongsModel, String artistsSongsModel) {
         this.imgSongsModel = imgSongsModel;
+        this.nameSongsModel = nameSongsModel;
+        this.artistsSongsModel = artistsSongsModel;
+    }
+
+    public Songs(String nameSongsModel, String artistsSongsModel) {
         this.nameSongsModel = nameSongsModel;
         this.artistsSongsModel = artistsSongsModel;
     }

@@ -1,13 +1,13 @@
-package com.example.manhvd.musicplayer.Adapter;
+package com.example.manhvd.musicplayer.view.adapter;
 
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.example.manhvd.musicplayer.Fragments.FragmentAlbums;
-import com.example.manhvd.musicplayer.Fragments.FragmentArtists;
-import com.example.manhvd.musicplayer.Fragments.FragmentSongs;
+import com.example.manhvd.musicplayer.view.fragments.FragmentAlbums;
+import com.example.manhvd.musicplayer.view.fragments.FragmentArtists;
+import com.example.manhvd.musicplayer.view.fragments.FragmentSongs;
 
 public class PagerAdapter extends FragmentStatePagerAdapter {
 
