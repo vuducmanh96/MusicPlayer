@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.manhvd.musicplayer.R;
 import com.example.manhvd.musicplayer.model.entity.Songs;
+import com.example.manhvd.musicplayer.view.activity.MainActivity;
 import com.example.manhvd.musicplayer.view.adapter.SongsAdapter;
 
 import java.util.ArrayList;
@@ -31,6 +32,9 @@ public class FragmentSongs extends Fragment {
     private CardView cardView;
     private ArrayList<Songs> songsList;
     private SongsAdapter songsAdapter;
+    public static final int LINEAR = 1;
+    public static final int GRID = 0;
+    private int check;
 
     public FragmentSongs() {
 
@@ -43,26 +47,23 @@ public class FragmentSongs extends Fragment {
         recyclerViewSongs = view.findViewById(R.id.recycler_Songs);
         cardView = view.findViewById(R.id.card_viewSongs);
         songsList = new ArrayList<>();
-        checkUserPermission();
         loadSongs();
         songsAdapter = new SongsAdapter(songsList, getContext());
-        //songsAdapterGrid = new SongsAdapterGrid(songsList, getContext());
         recyclerViewSongs.setAdapter(songsAdapter);
-        LinearLayoutSetup();
-        //GridLayoutSetup();
+        LayoutSetup(GRID);
         return view;
     }
 
-    private void LinearLayoutSetup() {
-        recyclerViewSongs.setHasFixedSize(true);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        recyclerViewSongs.setLayoutManager(linearLayoutManager);
-    }
-
-    private void GridLayoutSetup() {
-        recyclerViewSongs.setHasFixedSize(true);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 3);
-        recyclerViewSongs.setLayoutManager(gridLayoutManager);
+    public void LayoutSetup(int check) {
+        if(check == LINEAR) {
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+            recyclerViewSongs.setLayoutManager(linearLayoutManager);
+            songsAdapter.setCheck(SongsAdapter.LINEAR);
+        } else if(check == GRID) {
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 3);
+            recyclerViewSongs.setLayoutManager(gridLayoutManager);
+            songsAdapter.setCheck(songsAdapter.GRID);
+        }
     }
 
     private void checkUserPermission(){
@@ -84,14 +85,15 @@ public class FragmentSongs extends Fragment {
                     loadSongs();
                 }else{
                     Toast.makeText(getContext(), "Permission Denied", Toast.LENGTH_SHORT).show();
-                    checkUserPermission(); }
+                    checkUserPermission();
+                }
                 break;
             default:
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 
-    private void loadSongs(){
+    public void loadSongs(){
         Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
         String selection = MediaStore.Audio.Media.IS_MUSIC+"!=0";
         Cursor cursor = getContext().getContentResolver().query(uri,null,selection,null,null);
@@ -107,8 +109,6 @@ public class FragmentSongs extends Fragment {
                 }while (cursor.moveToNext());
             }
             cursor.close();
-            songsAdapter = new SongsAdapter(songsList, getContext());
-           // songsAdapterGrid = new SongsAdapterGrid(songsList, getContext());
         }
     }
 }

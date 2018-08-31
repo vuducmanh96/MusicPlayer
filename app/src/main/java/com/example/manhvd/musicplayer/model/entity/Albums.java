@@ -13,6 +13,11 @@ public class Albums implements Serializable {
         ArtistsAlbumsModel = artistsAlbumsModel;
     }
 
+    public Albums(String nameAlbumsModel, String artistsAlbumsModel) {
+        this.nameAlbumsModel = nameAlbumsModel;
+        ArtistsAlbumsModel = artistsAlbumsModel;
+    }
+
     public int getImgAlbumsModel() {
         return imgAlbumsModel;
     }

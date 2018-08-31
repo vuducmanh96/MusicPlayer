@@ -1,39 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:background="@drawable/beat"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView
+    android:layout_margin="1dp"
+    android:id="@+id/card_viewSongsGrid"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="150dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout
+        android:background="@drawable/beat"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:paddingBottom="2dp"
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/tv_songNameGrid"
-            android:layout_gravity="center"
-            android:text="Chung ta la nguoi la"
-            android:textSize="16sp"
-            android:padding="4dp"
-            android:background="#000"
-            android:textColor="#ffff"
+        <LinearLayout
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:paddingBottom="2dp"
+            android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:id="@+id/tv_songArtistsGrid"
-            android:layout_gravity="center"
-            android:text="Ho Quang Hieu"
-            android:padding="4dp"
-            android:background="#000"
-            android:layout_marginTop="2sp"
-            android:textColor="#ffff"
-            android:textSize="12sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-
-</RelativeLayout>
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_songNameGrid"
+                android:layout_gravity="center"
+                android:text="Chung ta la nguoi la"
+                android:textSize="10sp"
+                android:padding="4dp"
+                android:background="#000"
+                android:textColor="#ffff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_songArtistsGrid"
+                android:layout_gravity="center"
+                android:text="Ho Quang Hieu"
+                android:padding="4dp"
+                android:background="#000"
+                android:layout_marginTop="2sp"
+                android:textColor="#ffff"
+                android:textSize="8sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
