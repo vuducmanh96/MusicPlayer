@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class SongsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private ArrayList<Songs> songsArrayList;
     private Context context;
-    private int check;
+    private int checkTypeScreen;
     public static final int LINEAR = 1;
     public static final int GRID = 0;
 
@@ -32,19 +32,18 @@ public class SongsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         this.context = context;
     }
 
-    public SongsAdapter(ArrayList<Songs> songsArrayList, Context context, int check) {
+    public SongsAdapter(ArrayList<Songs> songsArrayList, Context context, int checkTypeScreen) {
         this.songsArrayList = songsArrayList;
         this.context = context;
-        this.check = check;
+        this.checkTypeScreen = checkTypeScreen;
     }
 
-    public int getCheck() {
-        return check;
+    public int getCheckTypeScreen() {
+        return checkTypeScreen;
     }
 
-    public void setCheck(int check) {
-        this.check = check;
-        notifyDataSetChanged();
+    public void setCheckTypeScreen(int checkTypeScreen) {
+        this.checkTypeScreen = checkTypeScreen;
     }
 
     @Override
@@ -62,35 +61,40 @@ public class SongsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public int getItemViewType(int position) {
-        return check;
+        return checkTypeScreen;
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        final Songs songs = songsArrayList.get(position);
         switch (holder.getItemViewType()) {
             case LINEAR:
                 SongsViewHolderLinear holderLinear = (SongsViewHolderLinear) holder;
-                Songs songsLinear = songsArrayList.get(position);
-                holderLinear.imgSongs.setImageResource(songsLinear.getImgSongsModel());
-                holderLinear.tvSongsName.setText(songsLinear.getNameSongsModel());
-                holderLinear.tvSongsArtists.setText(songsLinear.getArtistsSongsModel());
+                //Songs songsLinear = songsArrayList.get(position);
+                holderLinear.imgSongs.setImageResource(songs.getImgSongsModel());
+                holderLinear.tvSongsName.setText(songs.getNameSongsModel());
+                holderLinear.tvSongsArtists.setText(songs.getArtistsSongsModel());
                 break;
             case GRID:
                 SongViewHolderGrid holderGrid = (SongViewHolderGrid) holder;
-                Songs songsGrid = songsArrayList.get(position);
-                holderGrid.tvSongsnameGrid.setText(songsGrid.getNameSongsModel());
-                holderGrid.tvSongsArtistsGrid.setText(songsGrid.getArtistsSongsModel());
+                //Songs songsGrid = songsArrayList.get(position);
+                holderGrid.tvSongsnameGrid.setText(songs.getNameSongsModel());
+                holderGrid.tvSongsArtistsGrid.setText(songs.getArtistsSongsModel());
                 break;
         }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Songs songsLinear = songsArrayList.get(position);
                 Intent intent = new Intent(context.getApplicationContext(), ActivitySongPlayer.class);
+                intent.putExtra("NAMESONG", songs.getNameSongsModel());
+                intent.putExtra("ARTISTSSONG", songs.getArtistsSongsModel());
                 context.startActivity(intent);
             }
         });
-
     }
+
+
 
     @Override
     public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
@@ -108,7 +112,7 @@ public class SongsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         TextView tvSongsName;
         TextView tvSongsArtists;
         public  SongsViewHolderLinear(@NonNull View itemView) {
-            super(itemView);
+           super(itemView);
             cardViewSongs = itemView.findViewById(R.id.card_viewSongs);
             imgSongs = itemView.findViewById(R.id.img_songs);
             tvSongsName = itemView.findViewById(R.id.tv_songName);

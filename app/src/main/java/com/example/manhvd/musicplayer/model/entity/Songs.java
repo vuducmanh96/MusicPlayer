@@ -3,9 +3,17 @@ package com.example.manhvd.musicplayer.model.entity;
 import java.io.Serializable;
 
 public class Songs implements Serializable {
+    private int idSongModel;
     private int imgSongsModel;
     private String nameSongsModel;
     private String artistsSongsModel;
+
+    public Songs(int idSongModel, int imgSongsModel, String nameSongsModel, String artistsSongsModel) {
+        this.idSongModel = idSongModel;
+        this.imgSongsModel = imgSongsModel;
+        this.nameSongsModel = nameSongsModel;
+        this.artistsSongsModel = artistsSongsModel;
+    }
 
     public Songs(int imgSongsModel, String nameSongsModel, String artistsSongsModel) {
         this.imgSongsModel = imgSongsModel;
@@ -16,6 +24,14 @@ public class Songs implements Serializable {
     public Songs(String nameSongsModel, String artistsSongsModel) {
         this.nameSongsModel = nameSongsModel;
         this.artistsSongsModel = artistsSongsModel;
+    }
+
+    public int getIdSongModel() {
+        return idSongModel;
+    }
+
+    public void setIdSongModel(int idSongModel) {
+        this.idSongModel = idSongModel;
     }
 
     public int getImgSongsModel() {

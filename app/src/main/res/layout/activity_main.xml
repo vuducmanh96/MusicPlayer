@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     tools:context=".view.activity.MainActivity">
 
     <android.support.v7.widget.Toolbar
@@ -44,6 +44,27 @@
             android:layout_alignParentLeft="true"
             android:layout_width="50dp"
             android:layout_height="50dp" />
+        <TextView
+            android:id="@+id/tv_activity_main_name_song"
+            android:text="Nguoi yeu cu"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            android:textColor="#1a2d96"
+            android:layout_toRightOf="@+id/img_bottomSongActivity"
+            android:paddingLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_activity_main_artists_song"
+            android:text="Khoi My"
+            android:textSize="12sp"
+            android:textStyle="italic"
+            android:textColor="#6b6b6c"
+            android:layout_toRightOf="@+id/img_bottomSongActivity"
+            android:layout_below="@+id/tv_activity_main_name_song"
+            android:paddingLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
         <ImageView
             android:id="@+id/img_bottomPlayActivity"
             android:src="@drawable/ic_playbottom_activity"

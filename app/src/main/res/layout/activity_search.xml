@@ -24,7 +24,7 @@
             android:layout_height="wrap_content" />
         <EditText
             android:layout_weight="8"
-            android:id="@+id/edt_search"
+            android:id="@+id/edt_search_text"
             android:layout_marginLeft="7dp"
             android:layout_toRightOf="@+id/img_back_search"
             android:hint="Search"
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content" />
         <ImageView
             android:layout_weight="0.75"
-            android:id="@+id/img_search_cancel"
+            android:id="@+id/img_search_clear_text"
             android:src="@drawable/cancel"
             android:scaleType="centerInside"
             android:paddingLeft="6dp"

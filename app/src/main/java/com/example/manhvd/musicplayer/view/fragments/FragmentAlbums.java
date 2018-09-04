@@ -44,7 +44,7 @@ public class FragmentAlbums extends Fragment {
         return view;
     }
 
-    public void loadAlbum(){
+    private void loadAlbum(){
         Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
         String selection = MediaStore.Audio.Media.IS_MUSIC+"!=0";
         Cursor cursor = getContext().getContentResolver().query(uri,null,selection,null,null);

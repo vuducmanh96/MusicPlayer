@@ -7,33 +7,51 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.manhvd.musicplayer.R;
+import com.example.manhvd.musicplayer.view.adapter.SongsAdapter;
 import com.example.manhvd.musicplayer.view.fragments.FragmentSongs;
 
 public class MainActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    private android.support.v7.widget.Toolbar toolbarMainActivity;
+    private Toolbar toolbarMainActivity;
     private FragmentSongs fragmentSongs;
+    private TextView tvMainActivityNameSong, tvMainActivityArtistsSong;
     private int check;
-    public static final int LINEAR = 1;
-    public static final int GRID = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setToolbar();
+        widget();
+        setToolbarMainActivity();
         addControl();
+        //getDataSongBottom();
+    }
+
+//    private void getDataSongBottom() {
+//        tvMainActivityNameSong.setText(getIntent().getStringExtra("NAMESONG"));
+//        tvMainActivityArtistsSong.setText(getIntent().getStringExtra("ARTISTSSONG"));
+//    }
+
+    private void widget() {
+        tabLayout = findViewById(R.id.tab_layout);
+        viewPager  =findViewById(R.id.view_pager);
+        toolbarMainActivity = findViewById(R.id.tool_barActivityMain);
+        tvMainActivityNameSong = findViewById(R.id.tv_activity_main_name_song);
+        tvMainActivityArtistsSong = findViewById(R.id.tv_activity_main_artists_song);
     }
 
     private void addControl() {
-        tabLayout = findViewById(R.id.tab_layout);
-        viewPager  =findViewById(R.id.view_pager);
         FragmentManager fragmentManager  = getSupportFragmentManager();
         PagerAdapter pagerAdapter = new com.example.manhvd.musicplayer.view.adapter.PagerAdapter(fragmentManager);
         viewPager.setAdapter(pagerAdapter);
@@ -43,8 +61,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
     }
 
-    private void setToolbar() {
-        toolbarMainActivity = findViewById(R.id.tool_barActivityMain);
+    private void setToolbarMainActivity() {
         setSupportActionBar(toolbarMainActivity);
         getSupportActionBar().setTitle("Beauty Music");
     }
@@ -59,12 +76,14 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_listView:
-                fragmentSongs = new FragmentSongs();
-                fragmentSongs.LayoutSetup(LINEAR);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+                fragmentSongs.recyclerViewSongs.setLayoutManager(linearLayoutManager);
+                fragmentSongs.songsAdapter.setCheckTypeScreen(fragmentSongs.songsAdapter.LINEAR);
                 break;
             case R.id.menu_gridView:
-                fragmentSongs = new FragmentSongs();
-                fragmentSongs.LayoutSetup(GRID);
+                GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 3);
+                fragmentSongs.recyclerViewSongs.setLayoutManager(gridLayoutManager);
+                fragmentSongs.songsAdapter.setCheckTypeScreen(fragmentSongs.songsAdapter.GRID);
                 break;
             case R.id.menu_action_search:
                 Intent intent = new Intent(MainActivity.this, SearchActivity.class);

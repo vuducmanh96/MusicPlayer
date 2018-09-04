@@ -28,10 +28,10 @@ import java.util.ArrayList;
 
 public class FragmentSongs extends Fragment {
 
-    private RecyclerView recyclerViewSongs;
+    public static RecyclerView recyclerViewSongs;
     private CardView cardView;
     private ArrayList<Songs> songsList;
-    private SongsAdapter songsAdapter;
+    public static SongsAdapter songsAdapter;
     public static final int LINEAR = 1;
     public static final int GRID = 0;
     private int check;
@@ -47,10 +47,11 @@ public class FragmentSongs extends Fragment {
         recyclerViewSongs = view.findViewById(R.id.recycler_Songs);
         cardView = view.findViewById(R.id.card_viewSongs);
         songsList = new ArrayList<>();
+        //checkUserPermission();
         loadSongs();
         songsAdapter = new SongsAdapter(songsList, getContext());
         recyclerViewSongs.setAdapter(songsAdapter);
-        LayoutSetup(GRID);
+        LayoutSetup(LINEAR);
         return view;
     }
 
@@ -58,11 +59,11 @@ public class FragmentSongs extends Fragment {
         if(check == LINEAR) {
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
             recyclerViewSongs.setLayoutManager(linearLayoutManager);
-            songsAdapter.setCheck(SongsAdapter.LINEAR);
+            songsAdapter.setCheckTypeScreen(songsAdapter.LINEAR);
         } else if(check == GRID) {
             GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 3);
             recyclerViewSongs.setLayoutManager(gridLayoutManager);
-            songsAdapter.setCheck(songsAdapter.GRID);
+            songsAdapter.setCheckTypeScreen(songsAdapter.GRID);
         }
     }
 
@@ -93,9 +94,9 @@ public class FragmentSongs extends Fragment {
         }
     }
 
-    public void loadSongs(){
+    private void loadSongs(){
         Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-        String selection = MediaStore.Audio.Media.IS_MUSIC+"!=0";
+        String selection = MediaStore.Audio.Media.IS_MUSIC + "!=0";
         Cursor cursor = getContext().getContentResolver().query(uri,null,selection,null,null);
         if(cursor != null){
             if(cursor.moveToFirst()){
